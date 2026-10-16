@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockSmart | Gestión de inventario</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>📦 StockSmart</h2>
+    <p class="menu-label">GESTIÓN</p>
+    <nav>
+      <a href="#dashboard" class="active">▦ Panel principal</a>
+      <a href="#inventario">▤ Inventario</a>
+      <a href="#nuevo-producto">＋ Nuevo producto</a>
+    </nav>
+    <p class="sidebar-footer">Sistema de inventario v1.0</p>
+  </aside>
+
+  <main class="main-content" id="dashboard">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">GESTIÓN EMPRESARIAL</p>
+        <h1>Panel de inventario</h1>
+        <p class="subtitle">Controlá tus productos y niveles de stock.</p>
+      </div>
+      <span class="status">● Sistema activo</span>
+    </header>
+
+    <section class="stats">
+      <article class="stat-card">
+        <span>Productos registrados</span>
+        <strong id="total-productos">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Unidades en stock</span>
+        <strong id="total-unidades">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Valor del inventario</span>
+        <strong id="valor-inventario">$ 0,00</strong>
+      </article>
+      <article class="stat-card warning-card">
+        <span>Productos con stock bajo</span>
+        <strong id="stock-bajo">0</strong>
+      </article>
+    </section>
+
+    <section class="panel" id="nuevo-producto">
+      <div class="section-heading">
+        <div>
+          <h2>Registrar producto</h2>
+          <p>Completá los datos para incorporarlo al inventario.</p>
+        </div>
+      </div>
+
+      <form id="form-producto">
+        <div class="form-grid">
+          <div>
+            <label for="nombre">Nombre del producto</label>
+            <input id="nombre" type="text"
+              placeholder="Ej. Teclado inalámbrico" required>
+          </div>
+          <div>
+            <label for="codigo">Código SKU</label>
+            <input id="codigo" type="text"
+              placeholder="Ej. TEC-001" required>
+          </div>
+          <div>
+            <label for="categoria">Categoría</label>
+            <input id="categoria" type="text"
+              placeholder="Ej. Electrónica" required>
+          </div>
+          <div>
+            <label for="precio">Precio unitario ($)</label>
+            <input id="precio" type="number"
+              min="0.01" step="0.01" required>
+          </div>
+          <div>
+            <label for="cantidad">Cantidad disponible</label>
+            <input id="cantidad" type="number"
+              min="0" step="1" value="0" required>
+          </div>
+          <div>
+            <label for="minimo">Stock mínimo</label>
+            <input id="minimo" type="number"
+              min="0" step="1" value="5" required>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="primary-button">
+            + Agregar producto
+          </button>
+        </div>
+        <p id="mensaje" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel" id="inventario">
+      <div class="section-heading">
+        <div>
+          <h2>Inventario de productos</h2>
+          <p>Consultá las cantidades y el estado de cada producto.</p>
+        </div>
+        <input id="buscador" class="search"
+          type="search" placeholder="Buscar producto o SKU...">
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>SKU</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Unidades</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-productos"></tbody>
+        </table>
+      </div>
+      <p id="sin-productos" class="empty-state">
+        Todavía no hay productos registrados.
+      </p>
+    </section>
+
+    <footer>
+      StockSmart · Proyecto de portfolio desarrollado con JavaScript
+    </footer>
+  </main>
+</body>
+</html>
